@@ -1,0 +1,32 @@
+name: Build Dataset
+
+on:
+  push:
+    branches:
+      - master
+
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  build-ipasn:
+    name: Build IPASN
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v2
+
+      - name: Download datasource
+        run: |
+          curl https://iptoasn.com/data/ip2asn-combined.tsv.gz | gunzip -c | tee data/ip2asn.tsv
+
+      - name: Build dataset
+        run: |
+          go run cmd/ipasn/ipasn.go
+
+      - uses: eine/tip@master
+        with:
+          tag: "nightly"
+          token: ${{ github.token }}
+          files: |
+            ./data/ipasn.mmdb

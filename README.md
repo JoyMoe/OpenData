@@ -1,14 +1,24 @@
 # OpenData
 
-### Datacenter ASN list
-[datacenter.tsv](datacenter.tsv)
+## Datasets
 
-A TAB-separated list of ASNs known to belong to cloud, managed hosting, and colo facilities.
+### IPASN
 
-**Format:**
-`as_number` `as_description`
+IP-to-ASN map.
 
-### License
+#### MMDB
 
-[CC BY-SA 4.0](LICENSE)
+[ipasn.mmdb](releases/latest/download/ipasn.mmdb)
 
+**Fields:**
+`asn` `name`
+
+#### Sources
+
+- [IPtoASN](https://iptoasn.com/)
+
+## License
+
+Codes are licensed under [The MIT License](LICENSE).
+
+Datasets are licensed under [CC BY-SA 4.0](LICENSE-CC).
