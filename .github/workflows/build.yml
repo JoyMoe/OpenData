@@ -18,7 +18,7 @@ jobs:
 
       - name: Download datasource
         run: |
-          curl https://iptoasn.com/data/ip2asn-combined.tsv.gz | gunzip -c | tee data/ip2asn.tsv
+          curl https://iptoasn.com/data/ip2asn-combined.tsv.gz | gunzip -c | dd status=none of=data/ip2asn.tsv
 
       - name: Build dataset
         run: |
@@ -27,6 +27,6 @@ jobs:
       - uses: eine/tip@master
         with:
           tag: "nightly"
-          token: ${{ github.token }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           files: |
             ./data/ipasn.mmdb
